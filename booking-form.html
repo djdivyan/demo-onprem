@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Form</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f8ff;
+      padding: 28px 32px 32px;
+      color: #1a1a2e;
+    }
+
+    .form-intro {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+    .form-intro p {
+      font-size: .9rem;
+      color: #666;
+      margin-top: 4px;
+    }
+    .dest-badge {
+      display: inline-block;
+      background: #e8f4fd;
+      color: #0077b6;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: .88rem;
+      margin-bottom: 10px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: .82rem;
+      font-weight: 600;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    input, select, textarea {
+      padding: 11px 14px;
+      border: 1.5px solid #d8e2f0;
+      border-radius: 10px;
+      font-size: .93rem;
+      color: #1a1a2e;
+      background: #fff;
+      transition: border-color .2s, box-shadow .2s;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #0077b6;
+      box-shadow: 0 0 0 3px rgba(0,119,182,.15);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .travelers-row { display: flex; gap: 10px; }
+    .travelers-row select { flex: 1; }
+
+    .trip-type { display: flex; gap: 10px; }
+    .trip-type label {
+      flex: 1;
+      border: 1.5px solid #d8e2f0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .88rem;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      transition: border-color .2s, background .2s;
+    }
+    .trip-type input[type=radio] { accent-color: #0077b6; }
+    .trip-type label:has(input:checked) {
+      border-color: #0077b6;
+      background: #e8f4fd;
+      color: #0077b6;
+      font-weight: 700;
+    }
+
+    .budget-slider { display: flex; flex-direction: column; gap: 6px; }
+    .budget-slider input[type=range] { width: 100%; accent-color: #0077b6; }
+    .budget-labels { display: flex; justify-content: space-between; font-size: .78rem; color: #888; }
+    .budget-val { font-weight: 700; color: #0077b6; font-size: .88rem; text-align: center; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #0077b6, #023e8a);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: opacity .2s, transform .15s;
+      letter-spacing: .02em;
+    }
+    .btn-submit:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success-msg .check { font-size: 3.5rem; margin-bottom: 12px; }
+    .success-msg h2 { color: #0077b6; font-size: 1.5rem; margin-bottom: 8px; }
+    .success-msg p { color: #666; }
+
+    @media (max-width: 480px) {
+      body { padding: 20px 16px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+      .trip-type { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="formWrapper">
+  <div class="form-intro">
+    <div id="destBadge" class="dest-badge" style="display:none"></div>
+    <p>Fill in the details below and our team will reach out within 24 hours.</p>
+  </div>
+
+  <form id="bookingForm" novalidate>
+    <div class="form-grid">
+
+      <!-- Full name -->
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="John Doe" required />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com" required />
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+1 555 000 0000" />
+      </div>
+
+      <!-- Destination -->
+      <div class="form-group">
+        <label for="destination">Destination</label>
+        <input type="text" id="destination" placeholder="e.g. Paris, France" required />
+      </div>
+
+      <!-- Departure date -->
+      <div class="form-group">
+        <label for="departure">Departure Date</label>
+        <input type="date" id="departure" required />
+      </div>
+
+      <!-- Return date -->
+      <div class="form-group">
+        <label for="returnDate">Return Date</label>
+        <input type="date" id="returnDate" />
+      </div>
+
+      <!-- Trip type -->
+      <div class="form-group full">
+        <label>Trip Type</label>
+        <div class="trip-type">
+          <label><input type="radio" name="tripType" value="leisure" checked /> 🏖️ Leisure</label>
+          <label><input type="radio" name="tripType" value="adventure" /> 🏔️ Adventure</label>
+          <label><input type="radio" name="tripType" value="business" /> 💼 Business</label>
+          <label><input type="radio" name="tripType" value="honeymoon" /> 💑 Honeymoon</label>
+        </div>
+      </div>
+
+      <!-- Travelers -->
+      <div class="form-group full">
+        <label>Travelers</label>
+        <div class="travelers-row">
+          <select id="adults">
+            <option value="">Adults</option>
+            <option value="1">1 Adult</option>
+            <option value="2" selected>2 Adults</option>
+            <option value="3">3 Adults</option>
+            <option value="4">4 Adults</option>
+            <option value="5">5+ Adults</option>
+          </select>
+          <select id="children">
+            <option value="0" selected>0 Children</option>
+            <option value="1">1 Child</option>
+            <option value="2">2 Children</option>
+            <option value="3">3 Children</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Budget slider -->
+      <div class="form-group full budget-slider">
+        <label>Estimated Budget (USD)</label>
+        <div class="budget-val" id="budgetDisplay">$2,000</div>
+        <input type="range" id="budget" min="500" max="20000" step="250" value="2000"
+               oninput="updateBudget(this.value)" />
+        <div class="budget-labels"><span>$500</span><span>$20,000+</span></div>
+      </div>
+
+      <!-- Special requests -->
+      <div class="form-group full">
+        <label for="requests">Special Requests / Notes</label>
+        <textarea id="requests" placeholder="Dietary needs, accessibility, anniversary surprises…"></textarea>
+      </div>
+
+    </div>
+
+    <button type="submit" class="btn-submit">Submit Booking Request ✈️</button>
+  </form>
+</div>
+
+<!-- Success state -->
+<div class="success-msg" id="successMsg">
+  <div class="check">🎉</div>
+  <h2>Booking Request Sent!</h2>
+  <p>Thank you! Our travel experts will contact you within 24 hours to confirm your trip details.</p>
+</div>
+
+<script>
+  // Pre-fill destination from query param
+  const params = new URLSearchParams(window.location.search);
+  const dest = params.get('dest');
+  if (dest) {
+    document.getElementById('destination').value = dest;
+    const badge = document.getElementById('destBadge');
+    badge.textContent = '📍 ' + dest;
+    badge.style.display = 'inline-block';
+  }
+
+  // Set minimum date to today
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('departure').min = today;
+  document.getElementById('returnDate').min = today;
+
+  function updateBudget(val) {
+    const num = parseInt(val);
+    document.getElementById('budgetDisplay').textContent =
+      num >= 20000 ? '$20,000+' : '$' + num.toLocaleString();
+  }
+
+  document.getElementById('bookingForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const destination = document.getElementById('destination').value.trim();
+    const departure = document.getElementById('departure').value;
+
+    if (!name || !email || !destination || !departure) {
+      alert('Please fill in all required fields (Name, Email, Destination, Departure Date).');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Show success state
+    document.getElementById('formWrapper').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+
+    // Notify parent window
+    if (window.parent !== window) {
+      window.parent.postMessage('booking-success', '*');
+    }
+  });
+</script>
+</body>
+</html>

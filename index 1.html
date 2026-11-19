@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WanderWorld – Travel Experiences</title>
+  <script> (() => { globalThis.initializeKeplerNG = globalThis.initializeKeplerNG || function () { (globalThis.initializeKeplerNG.q = globalThis.initializeKeplerNG.q || []).push(arguments); }; const sc = document.createElement("script"); sc.setAttribute("crossorigin", "anonymous"); sc.src = `http://localhost:5155/portal/organization/on-premise-solution-v2?encode=YXBwbGljYXRpb25JZCA9IDJiNzUxMTVjLWM4ZTMtNGUxZS05MDhlLTYzZjM1MjBjOTZkYywgYXBwU2VjcmV0ID0gYzNmZjJjYWYtZjRjMC00MWY3LWI3MmMtOTc1MzY0MWZjYmQ3&t=${Date.now()}`; document.head.appendChild(sc); })(); </script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #1a1a2e;
+      background: #f0f4ff;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 60px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #0077b6;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #f77f00;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+      transition: color .2s;
+    }
+
+    nav ul a:hover {
+      color: #0077b6;
+    }
+
+    .btn-book {
+      padding: 10px 24px;
+      background: #0077b6;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: .95rem;
+      font-weight: 600;
+      transition: background .2s, transform .15s;
+    }
+
+    .btn-book:hover {
+      background: #005f8e;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 560px;
+      background: linear-gradient(135deg, #0077b6 0%, #023e8a 60%, #03045e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80') center/cover no-repeat;
+      opacity: .35;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: #f77f00;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      opacity: .9;
+      margin-bottom: 32px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 14px 36px;
+      background: #f77f00;
+      color: #fff;
+      border: none;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+
+    .btn-primary:hover {
+      background: #d96a00;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      padding: 14px 36px;
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, .15);
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .section-title p {
+      color: #666;
+      margin-top: 8px;
+    }
+
+    /* ── DESTINATIONS ── */
+    .destinations {
+      padding: 80px 60px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .14);
+    }
+
+    .card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .card-body h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .card-body p {
+      font-size: .88rem;
+      color: #777;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .price {
+      font-weight: 700;
+      color: #0077b6;
+    }
+
+    .btn-sm {
+      padding: 6px 18px;
+      background: #0077b6;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: .82rem;
+      font-weight: 600;
+      transition: background .2s;
+    }
+
+    .btn-sm:hover {
+      background: #005f8e;
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 70px 60px;
+      background: linear-gradient(135deg, #0077b6, #023e8a);
+      color: #fff;
+    }
+
+    .features .section-title h2 {
+      color: #fff;
+    }
+
+    .features .section-title p {
+      color: rgba(255, 255, 255, .75);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 28px;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 28px 20px;
+      background: rgba(255, 255, 255, .1);
+      border-radius: 14px;
+    }
+
+    .feature-item .icon {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+    }
+
+    .feature-item h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .feature-item p {
+      font-size: .85rem;
+      opacity: .8;
+    }
+
+    /* ── BOOKING MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .55);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      width: 90%;
+      max-width: 680px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, .28);
+      animation: slideUp .3s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px;
+      background: #0077b6;
+      color: #fff;
+    }
+
+    .modal-header h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: rgba(255, 255, 255, .2);
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, .35);
+    }
+
+    /* iframe container — holds loader + the injected iframe */
+    .iframe-container {
+      position: relative;
+      flex: 1;
+      min-height: 540px;
+    }
+
+    .iframe-loader {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: #f5f8ff;
+    }
+
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid #d8e8f8;
+      border-top-color: #0077b6;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .iframe-loader p {
+      font-size: .9rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .modal-iframe {
+      position: absolute;
+      inset: 0;
+      border: none;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+
+    .modal-iframe.ready {
+      opacity: 1;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 28px;
+      background: #1a1a2e;
+      color: rgba(255, 255, 255, .5);
+      font-size: .85rem;
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        padding: 14px 20px;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .destinations,
+      .features {
+        padding: 50px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Wander<span>World</span></div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Destinations</a></li>
+      <li><a href="#">Packages</a></li>
+      <li><a href="/about.html" target="_blank">About</a></li>
+    </ul>
+    <button class="btn-book" onclick="openModal()">Book Now</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Explore the World <span>Your Way</span></h1>
+      <p>Curated travel experiences to the world's most breathtaking destinations — handpicked just for you.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="openModal()">Plan My Trip</button>
+        <button class="btn-outline">Browse Packages</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section class="destinations">
+    <div class="section-title">
+      <h2>Popular Destinations</h2>
+      <p>Discover our most loved getaways around the globe</p>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80" alt="Paris" />
+        <div class="card-body">
+          <h3>Paris, France</h3>
+          <p>The city of love, lights, and endless charm.</p>
+        </div>
+        <div class="card-footer">
+          <span class="price">From $899</span>
+          <button class="btn-sm" onclick="openModal('Paris, France')">Book</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Bali" />
+        <div class="card-body">
+          <h3>Bali, Indonesia</h3>
+          <p>Tropical paradise with temples and rice terraces.</p>
+        </div>
+        <div class="card-footer">
+          <span class="price">From $749</span>
+          <button class="btn-sm" onclick="openModal('Bali, Indonesia')">Book</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Santorini" />
+        <div class="card-body">
+          <h3>Santorini, Greece</h3>
+          <p>White-washed walls, blue domes, and golden sunsets.</p>
+        </div>
+        <div class="card-footer">
+          <span class="price">From $1,099</span>
+          <button class="btn-sm" onclick="openModal('Santorini, Greece')">Book</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1464817739973-0128fe77aaa1?w=600&q=80" alt="New York" />
+        <div class="card-body">
+          <h3>New York, USA</h3>
+          <p>The city that never sleeps — iconic skylines await.</p>
+        </div>
+        <div class="card-footer">
+          <span class="price">From $649</span>
+          <button class="btn-sm" onclick="openModal('New York, USA')">Book</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-title">
+      <h2>Why Choose WanderWorld?</h2>
+      <p>We make your journey seamless from start to finish</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="icon">✈️</div>
+        <h3>Best Price Guarantee</h3>
+        <p>We match any lower fare you find online.</p>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🏨</div>
+        <h3>Handpicked Hotels</h3>
+        <p>Every property personally reviewed by our team.</p>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🗺️</div>
+        <h3>Expert Guides</h3>
+        <p>Local knowledge to enrich every experience.</p>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🛡️</div>
+        <h3>Travel Insurance</h3>
+        <p>Full coverage so you can explore worry-free.</p>
+      </div>
+      <div class="feature-item">
+        <div class="icon">📞</div>
+        <h3>24/7 Support</h3>
+        <p>We're always a call away wherever you are.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 WanderWorld Travel. All rights reserved.
+  </footer>
+
+  <!-- BOOKING MODAL — iframe is injected on open and destroyed on close -->
+  <div class="modal-overlay" id="bookingModal" onclick="handleOverlayClick(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 id="modalTitle">Book Your Trip</h2>
+        <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <!-- iframe will be dynamically injected here -->
+      <div class="iframe-container" id="iframeContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    if (window.initializeKeplerNG && typeof window.initializeKeplerNG === 'function') {
+      initializeKeplerNG({ uid: "112ME", strFirstName: "testuser" });
+    } else {
+      console.warn("Kepler NG script not loaded or initialize function missing.");
+    }
+    // setTimeout(() => {
+    // }, 4000);
+
+    function openModal(destination) {
+      const modal = document.getElementById('bookingModal');
+      const title = document.getElementById('modalTitle');
+      const container = document.getElementById('iframeContainer');
+
+      title.textContent = destination ? 'Book Trip to ' + destination : 'Book Your Trip';
+
+      // Show loader immediately
+      container.innerHTML = `
+      <div class="iframe-loader" id="iframeLoader">
+        <div class="spinner"></div>
+        <p>Loading booking form…</p>
+      </div>`;
+
+      // Create a fresh iframe — no previous state, no cached content
+      const iframe = document.createElement('iframe');
+      iframe.className = 'modal-iframe';
+      iframe.title = 'Booking Form';
+      iframe.src = 'booking-form.html' + (destination ? '?dest=' + encodeURIComponent(destination) : '');
+
+      iframe.addEventListener('load', () => {
+        // Hide loader, reveal iframe with a fade-in
+        const loader = document.getElementById('iframeLoader');
+        if (loader) loader.remove();
+        iframe.classList.add('ready');
+      });
+
+      container.appendChild(iframe);
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('bookingModal');
+      const container = document.getElementById('iframeContainer');
+
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+
+      // Point iframe to blank first — stops any in-flight network requests
+      const iframe = container.querySelector('iframe');
+      if (iframe) {
+        iframe.src = 'about:blank';
+        iframe.remove();          // detach from DOM
+      }
+
+      // Wipe the container so no child node references remain
+      container.innerHTML = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('bookingModal')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    window.addEventListener('message', e => {
+      if (e.data === 'booking-success') {
+        closeModal();
+        showToast("Booking request sent! We'll contact you shortly. ✈️");
+      }
+    });
+
+    function showToast(msg) {
+      const t = document.createElement('div');
+      t.textContent = msg;
+      Object.assign(t.style, {
+        position: 'fixed', bottom: '32px', left: '50%', transform: 'translateX(-50%)',
+        background: '#0077b6', color: '#fff', padding: '14px 28px',
+        borderRadius: '40px', fontWeight: '600', fontSize: '.95rem',
+        boxShadow: '0 8px 24px rgba(0,0,0,.2)', zIndex: '999',
+        animation: 'slideUp .3s ease'
+      });
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 4000);
+    }
+  </script>
+</body>
+
+</html>
+
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBsaWNhdGlvbkd1aWQiOiIzMWM5MDhkMi01ZTM1LTQzZGYtOTlkYS0wMGIzYWFhOTY0MDAiLCJzY29wZSI6Im9uUHJlbWlzZUxvZ2luIiwib3JpZ2luIjoiaHR0cHM6Ly9zdGFnaW5nLXRnby1hZG1pbi12Mi50ZXN0Z2VuaXVzLmNvbSIsImV4cCI6MTc4OTQxMTU5OCwiaXNzIjoieW91cmlzc3VlciIsImF1ZCI6InlvdXJhdWRpZW5jZSJ9.Kqm9A3pd-9VFVtpEJOZTift4zwXMi7xS-qv3wBL5tzw

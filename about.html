@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | WanderWorld</title>
+    <script> (() => { globalThis.initializeKeplerNG = globalThis.initializeKeplerNG || function () { (globalThis.initializeKeplerNG.q = globalThis.initializeKeplerNG.q || []).push(arguments); }; const sc = document.createElement("script"); sc.setAttribute("crossorigin", "anonymous"); sc.src = `http://localhost:5155/portal/organization/on-premise-solution-v2?encode=YXBwbGljYXRpb25JZCA9IDJiNzUxMTVjLWM4ZTMtNGUxZS05MDhlLTYzZjM1MjBjOTZkYywgYXBwU2VjcmV0ID0gYzNmZjJjYWYtZjRjMC00MWY3LWI3MmMtOTc1MzY0MWZjYmQ3&t=${Date.now()}`; document.head.appendChild(sc); })(); </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f4ff;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 60px;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0077b6;
+        }
+
+        .logo span {
+            color: #f77f00;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            margin-left: 24px;
+        }
+
+        nav a:hover {
+            color: #0077b6;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #0077b6, #023e8a);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* SECTIONS */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: #023e8a;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        /* ABOUT */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-content img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .12);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: #0077b6;
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        /* STATS */
+        .stats {
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-box {
+            background: #fff;
+            padding: 30px;
+            text-align: center;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        }
+
+        .stat-box h3 {
+            font-size: 2rem;
+            color: #0077b6;
+            margin-bottom: 10px;
+        }
+
+        .stat-box p {
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* TEAM */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .team-card {
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+            transition: transform 0.2s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .team-card h3 {
+            margin-top: 15px;
+            color: #023e8a;
+        }
+
+        .team-card p {
+            color: #777;
+            padding-bottom: 20px;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #0077b6, #023e8a);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #f77f00;
+            color: white;
+            text-decoration: none;
+            padding: 14px 35px;
+            border-radius: 35px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .cta-btn:hover {
+            background: #d96a00;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1a1a2e;
+            color: rgba(255, 255, 255, 0.65);
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media(max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Wander<span>World</span></div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>About WanderWorld</h1>
+        <p>
+            Creating unforgettable travel experiences and helping travelers explore
+            the world's most extraordinary destinations since 2015.
+        </p>
+    </section>
+
+    <!-- ABOUT -->
+    <section>
+        <div class="container">
+            <div class="about-content">
+                https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1000&q=80
+
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>
+                        WanderWorld was founded with a simple mission: make world-class
+                        travel accessible, enjoyable, and hassle-free for everyone.
+                    </p>
+
+                    <p>
+                        From romantic European escapes to tropical island adventures,
+                        we've helped thousands of travelers create memories that last a
+                        lifetime.
+                    </p>
+
+                    <p>
+                        Our travel experts carefully design every package to ensure quality,
+                        value, and unforgettable experiences.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Achievements</h2>
+                <p>Trusted by travelers worldwide</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>50K+</h3>
+                    <p>Happy Travelers</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>120+</h3>
+                    <p>Destinations</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>98%</h3>
+                    <p>Customer Satisfaction</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>10+</h3>
+                    <p>Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+                <p>The people behind your amazing journeys</p>
+            </div>
+
+            <div class="team-grid">
+
+                <div class="team-card">
+                    https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80
+                    <h3>Sarah Johnson</h3>
+                    <p>Founder & CEO</p>
+                </div>
+
+                <div class="team-card">
+                    https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80
+                    <h3>Michael Carter</h3>
+                    <p>Travel Director</p>
+                </div>
+
+                <div class="team-card">
+                    https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80
+                    <h3>Emma Wilson</h3>
+                    <p>Customer Experience Lead</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Ready for Your Next Adventure?</h2>
+        <p>
+            Let us help you plan the perfect getaway tailored to your dreams.
+        </p>
+        <a href="index.html" class="cta-btn">Explore Destinations</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 WanderWorld Travel. All Rights Reserved.
+    </footer>
+
+    <script>
+        if (window.initializeKeplerNG && typeof window.initializeKeplerNG === 'function') {
+            initializeKeplerNG({ uid: "112ME", strFirstName: "testuser" });
+        } else {
+            console.warn("Kepler NG script not loaded or initialize function missing.");
+        }
+    </script>
+
+</body>
+
+</html>
